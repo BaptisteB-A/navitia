@@ -893,6 +893,15 @@ GeoRef::~GeoRef() {
     }
 }
 
+bool POI::operator<(const POI& other) const {
+    std::string lower_name = strip_accents_and_lower(name);
+    std::string lower_other_name = strip_accents_and_lower(other.name);
+    if (lower_name != lower_other_name) {
+        return lower_name < lower_other_name;
+    }
+    return uri < other.uri;
+}
+
 type::Indexes POI::get(type::Type_e type, const GeoRef&) const {
     switch (type) {
         case type::Type_e::POIType:

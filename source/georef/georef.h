@@ -431,6 +431,7 @@ struct POI : public nt::Nameable, nt::Header {
     }
 
     type::Indexes get(type::Type_e type, const GeoRef&) const;
+    bool operator<(const POI& other) const;
 
 private:
 };
