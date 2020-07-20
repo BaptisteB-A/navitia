@@ -53,20 +53,17 @@
 
 <h3 id="approach"> Approach</h3>
 
-<p>Navitia is an open-source web API, <strong>initially</strong> built to provide traveler information on urban transportation networks.<br>
-Its main purpose is to provide day-to-day informations to travelers.<br>
-Over time, Navitia has been able to do way more, <em>sometimes</em> for technical and debuging purpose <em>or</em> because other functional needs fit quite well in what Navitia can do <em>or</em> just because it was quite easy and super cool.</p>
+<p>Navitia is an open-source web API, <strong>initially</strong> built to provide traveler information on urban transportation networks.<br>Its main purpose is to provide day-to-day informations to travelers.<br>Over time, Navitia has been able to do way more, <em>sometimes</em> for technical and debuging purpose <em>or</em> because other functional needs fit quite well in what Navitia can do <em>or</em> just because it was quite easy and super cool.</p>
 
 <p>Technically, Navitia is a <a href="http://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a> API that returns JSON formated results.</p>
 
 <h3 id="who-39-s-who"> Who&rsquo;s who</h3>
 
-<p>Navitia is instanciated and exposed publicly through <a href="http://api.navitia.io">api.navitia.io</a>.<br>
-Developments on Navitia are lead by Kisio Digital (previously CanalTP).<br>
-Kisio Digital is a subsidiary of Keolis (itself a subsidiary of SNCF, French national railway company).</p>
+<p>Navitia is instanciated and exposed publicly through <a href="http://api.navitia.io">api.navitia.io</a>.<br>Developments on Navitia are lead by Kisio Digital (previously CanalTP).<br>Kisio Digital is a subsidiary of Keolis (itself a subsidiary of SNCF, French national railway company).</p>
 
 <aside class="notice">
-A fake token is used in examples below: be aware that this token is really limited. You should use yours to get better services on real data.
+A fake token is used in examples below: be aware that this token is really limited (&ldquo;sandbox&rdquo; coverage only).</br>
+You have to use yours to get real services on real data (your token has no access to &ldquo;sandbox&rdquo; coverage).
 </aside>
 
 <h2 id="first-step">First step</h2>
@@ -78,6 +75,11 @@ A fake token is used in examples below: be aware that this token is really limit
 </blockquote>
 
 <p>Get a token here <a href="http://navitia.io/register/">http://navitia.io/register/</a>. We need your mail to stay in touch when Navitia changes.</p>
+
+<aside class="notice">
+The token obtained is private, you should avoid sharing it publicly (beware if you share code examples, url or screenshot).</br>
+This will avoid having someone use your request quota.
+</aside>
 
 <h2 id="second-step">Second step</h2>
 <pre class="highlight shell"><code><span class="c"># You can use curl to request Navitia</span>
@@ -191,7 +193,7 @@ if you only want to challenge Navitia functionality, take your token and go to t
 
 <p>Stay tuned on twitter <a href="https://twitter.com/navitia">@navitia</a>.</p>
 
-<p>At last, we are present on IRC on the network <a href="https://webchat.freenode.net/">Freenode</a>, channel <b>#navitia</b>.</p>
+<p>At last, we are present on the network <code class="prettyprint">matrix.org</code>, channel <a href="https://riot.im/app/#/room/#navitia:matrix.org"><code class="prettyprint">#navitia:matrix.org</code></a>.</p>
 
       </div>
       <div class="dark-box">

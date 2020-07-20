@@ -74,15 +74,15 @@ HTTP/1.1 404 OK
 </tr>
 <tr>
 <td>no_destination</td>
-<td>Couldn&rsquo;t find an destination for the journeys</td>
+<td>Couldn&rsquo;t find a destination for the journeys</td>
 </tr>
 <tr>
 <td>no_origin_nor_destination</td>
-<td>Couldn&rsquo;t find an origin nor a destination for the journeys</td>
+<td>Couldn&rsquo;t find neither origin nor destination for the journeys</td>
 </tr>
 <tr>
 <td>unknown_object</td>
-<td>As it&rsquo;s said</td>
+<td>Couldn&rsquo;t find one of the request parameters. It can be the region, the API or a PT object</td>
 </tr>
 </tbody></table>
 
@@ -111,6 +111,10 @@ HTTP/1.1 404 OK
 <tr>
 <td>bad_format</td>
 <td>When you provide ill-formated parameter (coord for example)</td>
+</tr>
+<tr>
+<td>config_exception</td>
+<td>When you try to configure an external service (street network back-end or autocomplete) with wrong parameters</td>
 </tr>
 </tbody></table>
 
@@ -144,6 +148,18 @@ Navitia can end up finding that the correct answer is empty.</p>
 <tr>
 <td>internal_error</td>
 <td>Something bad and unexpected has happened internally</td>
+</tr>
+<tr>
+<td>service_unavailable</td>
+<td>Navitia isn&rsquo;t responding</td>
+</tr>
+<tr>
+<td>dead_socket</td>
+<td>The requested region isn&rsquo;t responding</td>
+</tr>
+<tr>
+<td>technical_error</td>
+<td>An external service (street network back-end or autocomplete) isn&rsquo;t responding</td>
 </tr>
 </tbody></table>
 
