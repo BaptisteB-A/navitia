@@ -407,6 +407,42 @@ class Journeys(JourneyCommon):
             help="Here, Active or not the realtime traffic information (True/False)",
         )
         parser_get.add_argument(
+            "_asgard_language",
+            type=OptionValue(
+                [
+                    'ca-ES',
+                    'cs-CZ',
+                    'de-DE',
+                    'en-US',
+                    'en-US-x-pirate',
+                    'es-ES',
+                    'fr-FR',
+                    'hi-IN',
+                    'it-IT',
+                    'pt-PT',
+                    'ru-RU',
+                    'sl-SI',
+                    'sv-SE',
+                ]
+            ),
+            hidden=True,
+            help='Here, select a specific language for guidance instruction.\n'
+            'list available:\n'
+            '- ca-ES = catalan\n'
+            '- cs-CZ = czech\n'
+            '- de-DE = german\n'
+            '- en-US = english\n'
+            '- en-US-x-pirate = english_pirate\n'
+            '- es-ES = spanish\n'
+            '- fr-FR = french\n'
+            '- hi-IN = hindi\n'
+            '- it-IT = italian\n'
+            '- pt-PT = portuguese\n'
+            '- ru-RU = russian\n'
+            '- sl-SI = slovenian\n'
+            '- sv-SE = swedish\n',
+        )
+        parser_get.add_argument(
             "_here_language",
             type=OptionValue(
                 [

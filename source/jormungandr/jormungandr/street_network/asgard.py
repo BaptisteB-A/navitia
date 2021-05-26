@@ -34,6 +34,7 @@ from jormungandr import app
 from jormungandr.transient_socket import TransientSocket
 from jormungandr.fallback_modes import FallbackModes
 from jormungandr.street_network.kraken import Kraken
+from jormungandr.street_network.languages import Languages
 from jormungandr.utils import get_pt_object_coord
 from jormungandr.street_network.utils import make_speed_switcher
 
@@ -52,6 +53,7 @@ class Asgard(TransientSocket, Kraken):
         modes=None,
         id=None,
         timeout=10,
+        language="english",
         api_key=None,
         socket_ttl=app.config['ASGARD_ZMQ_SOCKET_TTL_SECONDS'],
         **kwargs
@@ -71,6 +73,7 @@ class Asgard(TransientSocket, Kraken):
         )
         self.asgard_socket = asgard_socket
         self.timeout = timeout
+        self.language = self._get_language(language.lower())
 
         self.breaker = pybreaker.CircuitBreaker(
             fail_max=app.config['CIRCUIT_BREAKER_MAX_ASGARD_FAIL'],
@@ -85,6 +88,7 @@ class Asgard(TransientSocket, Kraken):
             'class': self.__class__.__name__,
             'modes': self.modes,
             'timeout': self.timeout,
+            'language': self.language.value,
             'circuit_breaker': {
                 'current_state': self.breaker.current_state,
                 'fail_counter': self.breaker.fail_counter,
@@ -146,10 +150,12 @@ class Asgard(TransientSocket, Kraken):
         direct_path_type,
         request_id,
     ):
+        language = self.get_language_parameter(request)
         req = self._create_direct_path_request(
             mode, pt_object_origin, pt_object_destination, fallback_extremity, request
         )
 
+        req.direct_path.streetnetwork_params.language = language.value
         response = self._call_asgard(req)
 
         if response and mode == FallbackModes.bike.name:
@@ -159,6 +165,20 @@ class Asgard(TransientSocket, Kraken):
 
     def get_uri_pt_object(self, pt_object):
         return 'coord:{c.lon}:{c.lat}'.format(c=get_pt_object_coord(pt_object))
+
+    def _get_language(self, language):
+        try:
+            return Languages[language]
+        except KeyError:
+            self.logger.error('Asgard parameter language={} does not exist - force to english'.format(language))
+            return Languages.english
+
+    def get_language_parameter(self, request):
+        _language = request.get('_asgard_language', None)
+        if _language == None:
+            return self.language
+        else:
+            return self._get_language(Languages(_language).name)
 
     def _call_asgard(self, request):
         def _request():
