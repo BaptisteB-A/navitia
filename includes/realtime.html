@@ -48,6 +48,8 @@ Real time isn&rsquo;t available on every coverage for Navitia. For real time to 
     <li><a href="#MODIFIED_SERVICE">MODIFIED_SERVICE</a></li>
     <li><a href="#ADDITIONAL_SERVICE">ADDITIONAL_SERVICE</a></li>
     <li><a href="#UNKNOWN_EFFECT">UNKNOWN_EFFECT</a></li>
+    <li><a href="#MODIFIED_SERVICE">DETOUR</a></li>
+    <li><a href="#OTHER_EFFECT">OTHER_EFFECT</a></li>
 </ul>
 This list follows the GTFS RT values documented at <a href="https://gtfs.org/reference/realtime/v2/#enum-effect">https://gtfs.org/reference/realtime/v2/#enum-effect</a>.</p>
 
@@ -68,6 +70,10 @@ of course be <strong>visible</strong> if <code class="prettyprint">data_freshnes
 
 <p>On the other hand, a vehicle_journey that is <strong>created</strong> by a realtime feed will only be <strong>visible</strong> if
 <code class="prettyprint">data_freshness=realtime</code> on that same request.<br>And it will <strong>not appear</strong> if <code class="prettyprint">data_freshness=base_schedule</code>.</p>
+
+<h2 id="other-effect"><a name="OTHER_EFFECT"></a>Other effect</h2>
+
+<p>There is no known effect related to this disruption. You only have to show the message to your traveler&hellip;</p>
 
 <h2 id="trip-delayed"><a name="SIGNIFICANT_DELAYS"></a>Trip delayed</h2>
 
@@ -292,7 +298,7 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/physical_modes/&lt;physical_m
 
 <p>If the stop deleted is the origin/destination of a section of the journey, Navitia will compute a different itinerary to the requested station.<br>If not (deleting intermediate stop), the journey won&rsquo;t be affected.<br>Either way, a link to this disruption can be found in the section &ldquo;display_informations&rdquo; like for other disruptions.</p>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At the deleted stop area, the departure time of the train with a reduced service simply won&rsquo;t be displayed in the list of departures/stop_schedules if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.</p>
 
@@ -338,7 +344,7 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/physical_modes/&lt;physical_m
 <p>If the deleted trip is used by a section of the <code class="prettyprint">base_schedule</code> journey, Navitia will compute a different
 itinerary to the requested station in <code class="prettyprint">realtime</code>, or a later one (without using that trip).<br>A link to this disruption can be found in the section &ldquo;display_informations&rdquo; like for other disruptions, on a <code class="prettyprint">base_schedule</code> journey.</p>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At the deleted stop area, the departure time of the cancelled train simply won&rsquo;t be displayed in the list of departures/stop_schedules if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.</p>
 
@@ -430,7 +436,7 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/journeys?from<span class="o">
 
 <div></div>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At the added stop area, the departure time of the train with a modified service is displayed if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.<br>In that case, a link to this disruption can be found in the section &ldquo;display_informations&rdquo; for departures, in the &ldquo;date_times&rdquo; object itself for stop_schedules.</p>
 
@@ -523,13 +529,13 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/journeys?from<span class="o">
 
 <div></div>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At one of the added stop area from the additional trip, the departure time of the added train is displayed if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.<br>In that case, a link to this disruption can be found in the section &ldquo;display_informations&rdquo; for departures, in the &ldquo;date_times&rdquo; object itself for stop_schedules.</p>
 
 <p>The departure time of the train with an additional service simply won&rsquo;t be displayed in the list of departures/stop_schedules if &ldquo;data_freshness&rdquo; is set to &ldquo;base_schedule&rdquo;.</p>
 
-<h2 id="unknown-effect-aka-quot-back-to-normal-quot"><a name="UNKNOWN_EFFECT"></a>Unknown effect aka &ldquo;Back to normal&rdquo;</h2>
+<h2 id="unknown-effect-aka-back-to-normal"><a name="UNKNOWN_EFFECT"></a>Unknown effect aka &ldquo;Back to normal&rdquo;</h2>
 <pre class="highlight shell"><code><span class="c"># Extract of an impacted stop from /disruptions</span>
 <span class="o">{</span>
     <span class="s2">"amended_arrival_time"</span>: <span class="s2">"193200"</span>,

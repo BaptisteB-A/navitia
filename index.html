@@ -78,9 +78,15 @@
 
 <p>Technically, Navitia is a <a href="http://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a> API that returns JSON formated results.</p>
 
-<h3 id="who-39-s-who"> Who&rsquo;s who</h3>
+<h3 id="whos-who"> Who&rsquo;s who</h3>
 
 <p>Navitia is instanciated and exposed publicly through <a href="http://api.navitia.io">api.navitia.io</a>.<br>Developments on Navitia are lead by Kisio Digital (previously CanalTP).<br>Kisio Digital is a subsidiary of Keolis (itself a subsidiary of SNCF, French national railway company).</p>
+
+<h3 id="about-sandbox-coverage">About &ldquo;sandbox&rdquo; coverage</h3>
+
+<aside class="notice">
+Every example is based on fake data. Sandbox data is made up of few fake metro lines from a single network on the area of Paris only. If you want to play with real data, use your token and explore the world !
+</aside>
 
 <aside class="notice">
 A fake token is used in examples below: be aware that this token is really limited (&ldquo;sandbox&rdquo; coverage only).</br>
@@ -397,7 +403,7 @@ In this case it needs a region id. This id can be found in the <code class="pret
 
 <h2 id="seek-and-search">Seek and search</h2>
 
-<h3 id="what-places-have-a-name-that-start-with-39-eiff-39">What places have a name that start with &lsquo;eiff&rsquo;</h3>
+<h3 id="what-places-have-a-name-that-start-with-eiff">What places have a name that start with &lsquo;eiff&rsquo;</h3>
 
 <p>The <a href="#places">/places</a> API finds any object whose name matches the first letters of the query.</p>
 
@@ -431,7 +437,7 @@ The coordinates are always in decimal degrees as WGS84 (also known as GPS coordi
 <ul>
 <li><code class="prettyprint">from=-122.4752;37.80826</code></li>
 <li><code class="prettyprint">to=-122.402770;37.794682</code>
-Hence, the complete URL: <a href="https://api.navitia.io/v1/journeys?from=-122.4752;37.80826&amp;to=-122.402770;37.794682">https://api.navitia.io/v1/journeys?from=-122.4752;37.80826&amp;to=-122.402770;37.794682</a>.</li>
+Hence, the complete URL: <a href="https://api.navitia.io/v1/journeys?from=-122.4752;37.80826&to=-122.402770;37.794682">https://api.navitia.io/v1/journeys?from=-122.4752;37.80826&amp;to=-122.402770;37.794682</a>.</li>
 </ul>
 
 <aside class="success">
@@ -584,7 +590,7 @@ for a specific mode of public transport (bus, tram, metro, train) at your select
 <ul>
 <li>  <strong><a href="#pt-ref">Public transportation objects</a></strong> : List of the public transport
 objects of a region</li>
-<li>  <strong><a href="#stop-schedules">Stop Schedules</a></strong>, <strong><a href="#departures">Departures</a></strong> and <strong><a href="#arrivals">Arrivals</a></strong> :
+<li>  <strong><a href="#stop-schedules">Stop Schedules</a></strong>, <strong><a href="#terminus-schedules">Terminus Schedules</a></strong>, <strong><a href="#departures">Departures</a></strong> and <strong><a href="#arrivals">Arrivals</a></strong> :
 Compute time tables for a given resource</li>
 </ul>
 
@@ -772,7 +778,7 @@ That&rsquo;s lots of links. Links allow you to know all accessible uris and serv
 </tbody></table>
 
 <aside class="notice">
-    The number of objects returned for a request can <b>not be superior than 1000</b>.
+    The number of objects returned for a request can <b>not be superior than 1000 (except 200 for api /places)</b>.
     If you request for more, Navitia will return the first 1000, and you will have to paginate to get next 1000.
 </aside>
 
@@ -1394,9 +1400,9 @@ period. Both parameters &ldquo;until&rdquo; and &ldquo;since&rdquo; are optional
 <p>Example:</p>
 
 <ul>
-<li>  Getting every active (only base_schedule) New Jersey vehicles between 12h00 and 12h01, on a specific date <a href="https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&amp;until=20170407T120100">https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&amp;until=20170407T120100</a></li>
-<li>  Getting every active (according to realtime information) New Jersey vehicles between 12h00 and 12h01, on a specific date <a href="https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&amp;until=20170407T120100&amp;data_freshness=realtime">https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&amp;until=20170407T120100&amp;data_freshness=realtime</a></li>
-<li>  Getting every active disruption on &ldquo;Bretagne&rdquo; for a specific date <a href="http://api.navitia.io/v1/coverage/fr-bre/disruptions?since=20170206000000&amp;until=20170206235959">http://api.navitia.io/v1/coverage/fr-bre/disruptions?since=20170206000000&amp;until=20170206235959</a></li>
+<li>  Getting every active (only base_schedule) New Jersey vehicles between 12h00 and 12h01, on a specific date <a href="https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&until=20170407T120100">https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&amp;until=20170407T120100</a></li>
+<li>  Getting every active (according to realtime information) New Jersey vehicles between 12h00 and 12h01, on a specific date <a href="https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&until=20170407T120100&data_freshness=realtime">https://api.navitia.io/v1/coverage/us-ny/networks/network:newjersey/vehicle_journeys?since=20170407T120000&amp;until=20170407T120100&amp;data_freshness=realtime</a></li>
+<li>  Getting every active disruption on &ldquo;Bretagne&rdquo; for a specific date <a href="http://api.navitia.io/v1/coverage/fr-bre/disruptions?since=20170206000000&until=20170206235959">http://api.navitia.io/v1/coverage/fr-bre/disruptions?since=20170206000000&amp;until=20170206235959</a></li>
 </ul>
 
 <aside class="warning">
@@ -1611,6 +1617,7 @@ It returns a collection of <a href="#pt-object">pt_object</a>.</p>
 <li>  line</li>
 <li>  route</li>
 <li>  stop_area</li>
+<li>  stop_point</li>
 </ul>
 
 <p>Here is a typical use case. A traveler has to find a line between the
@@ -1620,7 +1627,7 @@ It returns a collection of <a href="#pt-object">pt_object</a>.</p>
 
 <p>User could type one of the following without any filters:</p>
 
-<h5 id="traveler-input-quot-bob-quot">Traveler input &ldquo;bob&rdquo;:</h5>
+<h5 id="traveler-input-bob">Traveler input &ldquo;bob&rdquo;:</h5>
 
 <ul>
 <li> network : &ldquo;bobby network&rdquo;</li>
@@ -1632,7 +1639,7 @@ It returns a collection of <a href="#pt-object">pt_object</a>.</p>
 <li> stop_area : &ldquo;&hellip;</li>
 </ul>
 
-<h5 id="traveler-input-quot-bobby-met-quot">Traveler input &quot;bobby met&rdquo;:</h5>
+<h5 id="traveler-input-bobby-met">Traveler input &quot;bobby met&rdquo;:</h5>
 
 <ul>
 <li> line : &ldquo;bobby metro 1&rdquo;</li>
@@ -1646,7 +1653,7 @@ It returns a collection of <a href="#pt-object">pt_object</a>.</p>
 <li> route : &ldquo;&hellip;</li>
 </ul>
 
-<h5 id="traveler-input-quot-bobby-met-11-quot-or-quot-bobby-metro-11-quot">Traveler input: &quot;bobby met 11&rdquo; or &ldquo;bobby metro 11&rdquo;:</h5>
+<h5 id="traveler-input-bobby-met-11-or-bobby-metro-11">Traveler input: &quot;bobby met 11&rdquo; or &ldquo;bobby metro 11&rdquo;:</h5>
 
 <ul>
 <li> line : &ldquo;bobby metro 11&rdquo;</li>
@@ -1709,7 +1716,7 @@ HTTP/1.1 200 OK
 <td>nop</td>
 <td>type[]</td>
 <td>array of string</td>
-<td>Type of objects you want to query It takes one the following values: [<code class="prettyprint">network</code>, <code class="prettyprint">commercial_mode</code>, <code class="prettyprint">line</code>, <code class="prettyprint">route</code>, <code class="prettyprint">stop_area</code>]</td>
+<td>Type of objects you want to query It takes one the following values: [<code class="prettyprint">network</code>, <code class="prettyprint">commercial_mode</code>, <code class="prettyprint">line</code>, <code class="prettyprint">route</code>, <code class="prettyprint">stop_area</code>, <code class="prettyprint">stop_point</code>]</td>
 <td>[<code class="prettyprint">network</code>, <code class="prettyprint">commercial_mode</code>, <code class="prettyprint">line</code>, <code class="prettyprint">route</code>, <code class="prettyprint">stop_area</code>]</td>
 </tr>
 <tr>
@@ -1725,6 +1732,13 @@ HTTP/1.1 200 OK
 <td>int</td>
 <td>Json response <a href="#depth">depth</a></td>
 <td>1</td>
+</tr>
+<tr>
+<td>nop</td>
+<td>filter</td>
+<td>string</td>
+<td>Use to filter returned objects. for example: network.id=sncf</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -2018,7 +2032,7 @@ coordinates, returning a <a href="#place">places</a> collection.</p>
 <li>  &ldquo;type[]=poi&rdquo; to take pois only</li>
 <li>  &ldquo;filter=poi_type.id=poi_type:amenity:parking&rdquo; to get parking</li>
 <li>  &ldquo;count=100&rdquo; for classic pagination (to get the 100 nearest ones)</li>
-<li>  <a href="https://api.navitia.io/v1/coverage/fr-idf/places/admin:7444/places_nearby?distance=10000&amp;count=100&amp;type%5B%5D=poi&amp;filter=poi_type.id=poi_type:amenity:parking">https://api.navitia.io/v1/coverage/fr-idf/places/admin:7444/places_nearby?distance=10000&amp;count=100&amp;type[]=poi&amp;filter=poi_type.id=poi_type:amenity:parking</a></li>
+<li>  <a href="https://api.navitia.io/v1/coverage/fr-idf/places/admin:7444/places_nearby?distance=10000&count=100&type%5B%5D=poi&filter=poi_type.id=poi_type:amenity:parking">https://api.navitia.io/v1/coverage/fr-idf/places/admin:7444/places_nearby?distance=10000&amp;count=100&amp;type[]=poi&amp;filter=poi_type.id=poi_type:amenity:parking</a></li>
 </ul></li>
 </ul>
 
@@ -2128,7 +2142,7 @@ HTTP/1.1 200 OK
 <p>There are two ways to access to this service : journeys from point to point, or isochrones from a single point to every point.</p>
 
 <aside class="success">
-    Neither the &lsquo;from&rsquo; nor the 'to&rsquo; parameter of the journey are required,
+    Neither the &lsquo;from&rsquo; nor the &lsquo;to&rsquo; parameter of the journey are required,
     but obviously one of them has to be provided.
     <br>
     If only one is defined an isochrone is computed with every possible
@@ -2176,7 +2190,7 @@ HTTP/1.1 200 OK
 <p>The most used way to access to this service is to get the <code class="prettyprint">/journeys</code> api endpoint.
 Here is the structure of a standard journey request:</p>
 
-<p><a href="https://api.navitia.io/v1/journeys?from=%7Bresource_id_1%7D&amp;to=%7Bresource_id_2%7D&amp;datetime=%7Bdate_time_to_leave%7D">https://api.navitia.io/v1/journeys?from={resource_id_1}&amp;to={resource_id_2}&amp;datetime={date_time_to_leave}</a> .</p>
+<p><a href="https://api.navitia.io/v1/journeys?from=%7Bresource_id_1%7D&to=%7Bresource_id_2%7D&datetime=%7Bdate_time_to_leave%7D">https://api.navitia.io/v1/journeys?from={resource_id_1}&amp;to={resource_id_2}&amp;datetime={date_time_to_leave}</a> .</p>
 
 <p><a href="#context">Context</a> object provides the <code class="prettyprint">current_datetime</code>, useful to compute waiting time when requesting Navitia without a <code class="prettyprint">datetime</code>.</p>
 
@@ -2197,7 +2211,7 @@ Here is the structure of a standard journey request:</p>
 
 <p>In the <a href="#examples">examples</a>, positions are given by coordinates and no network is specified.
 However when no coordinates are provided, you need to provide on what region you want to request as
-<a href="https://api.navitia.io/v1/coverage/us-ca/journeys?from=-122.4752;37.80826&amp;to=-122.402770;37.794682">https://api.navitia.io/v1/coverage/us-ca/journeys?from=-122.4752;37.80826&amp;to=-122.402770;37.794682</a></p>
+<a href="https://api.navitia.io/v1/coverage/us-ca/journeys?from=-122.4752;37.80826&to=-122.402770;37.794682">https://api.navitia.io/v1/coverage/us-ca/journeys?from=-122.4752;37.80826&amp;to=-122.402770;37.794682</a></p>
 
 <p>The list of regions covered by navitia is available through <a href="#coverage">coverage</a>.</p>
 
@@ -2465,6 +2479,13 @@ These disruptions won&rsquo;t be on the <code class="prettyprint">display_inform
 <td>Radius length (in meters) around the coordinates of arrival in which the stop points are considered free to go (crowfly=0)</td>
 <td>0</td>
 </tr>
+<tr>
+<td>nop</td>
+<td>timeframe_duration</td>
+<td>int</td>
+<td>Minimum timeframe to search journeys (in seconds, maximum allowed value = 86400). For example &lsquo;timeframe_duration=3600&rsquo; will search for all interesting journeys departing within the next hour.</td>
+<td>0</td>
+</tr>
 </tbody></table>
 
 <h3 id="precisions-on-forbidden_uris-and-allowed_id">Precisions on <code class="prettyprint">forbidden_uris[]</code> and <code class="prettyprint">allowed_id[]</code></h3>
@@ -2700,7 +2721,7 @@ They also can only use the allowed stop points for getting in or out of a vehicl
 <tr>
 <td>type</td>
 <td><em>enum</em> string</td>
-<td>Type of the section.<ul><li><code class="prettyprint">public_transport</code>: public transport section</li><li><code class="prettyprint">street_network</code>: street section</li><li><code class="prettyprint">waiting</code>: waiting section between transport</li><li><p><code class="prettyprint">stay_in</code>: this “stay in the vehicle” section occurs when the traveller has to stay in the vehicle when the bus change its routing. Here is an exemple for a journey from A to B: (lollipop line)</p><p><img alt="image" src="images/stay_in.png" /></p></li><li><code class="prettyprint">transfer</code>: transfert section</li><li><p><code class="prettyprint">crow_fly</code>: teleportation section, most of the time. Useful to make navitia idempotent when starting from or arriving to a city or a stop_area (“potato shaped” objects) in order to route to the nearest stop_point. Be careful: neither “path” nor “geojson” available in a crow_fly section.</p><p> Can also be used when no street_network data are available and not be considered as teleportation. The distance of such a crow_fly section will be a straight line between the point of departure and arrival (hence the name &#39;crow_fly&rsquo;). The duration of the section will be calculated with the Manhattan distance of the section (distance x √2). In this case, “geojson” is available.</p><p><img alt="image" src="images/crow_fly.png" /></p></li><li><code class="prettyprint">on_demand_transport</code>: vehicle may not drive along: traveler will have to call agency to confirm journey</li><li><code class="prettyprint">bss_rent</code>: taking a bike from a bike sharing system (bss)</li><li><code class="prettyprint">bss_put_back</code>: putting back a bike from a bike sharing system (bss)</li><li><code class="prettyprint">boarding</code>: boarding on plane</li><li><code class="prettyprint">landing</code>: landing off the plane</li><li><code class="prettyprint">alighting</code>: getting off a vehicle (boat, on-demand-transport, plane, &hellip;)</li><li><code class="prettyprint">park</code>: parking a car</li><li><code class="prettyprint">ridesharing</code>: car-pooling section</li></ul></td>
+<td>Type of the section.<ul><li><code class="prettyprint">public_transport</code>: public transport section</li><li><code class="prettyprint">street_network</code>: street section</li><li><code class="prettyprint">waiting</code>: waiting section between transport</li><li><p><code class="prettyprint">stay_in</code>: this “stay in the vehicle” section occurs when the traveller has to stay in the vehicle when the bus change its routing. Here is an exemple for a journey from A to B: (lollipop line)</p><p><img alt="image" src="images/stay_in.png" /></p></li><li><code class="prettyprint">transfer</code>: transfert section</li><li><p><code class="prettyprint">crow_fly</code>: teleportation section, most of the time. Useful to make navitia idempotent when starting from or arriving to a city or a stop_area (“potato shaped” objects) in order to route to the nearest stop_point. Be careful: neither “path” nor “geojson” available in a crow_fly section.</p><p> Can also be used when no street_network data are available and not be considered as teleportation. The distance of such a crow_fly section will be a straight line between the point of departure and arrival (hence the name &lsquo;crow_fly&rsquo;). The duration of the section will be calculated with the Manhattan distance of the section (distance x √2). In this case, “geojson” is available.</p><p><img alt="image" src="images/crow_fly.png" /></p></li><li><code class="prettyprint">on_demand_transport</code>: vehicle may not drive along: traveler will have to call agency to confirm journey</li><li><code class="prettyprint">bss_rent</code>: taking a bike from a bike sharing system (bss)</li><li><code class="prettyprint">bss_put_back</code>: putting back a bike from a bike sharing system (bss)</li><li><code class="prettyprint">boarding</code>: boarding on plane</li><li><code class="prettyprint">landing</code>: landing off the plane</li><li><code class="prettyprint">alighting</code>: getting off a vehicle (boat, on-demand-transport, plane, &hellip;)</li><li><code class="prettyprint">park</code>: parking a car</li><li><code class="prettyprint">ridesharing</code>: car-pooling section</li></ul></td>
 </tr>
 <tr>
 <td>id</td>
@@ -2710,7 +2731,7 @@ They also can only use the allowed stop points for getting in or out of a vehicl
 <tr>
 <td>mode</td>
 <td><em>enum</em> string</td>
-<td>Mode of the street network and crow_fly: <code class="prettyprint">Walking</code>, <code class="prettyprint">Bike</code>, <code class="prettyprint">Car</code>, &#39;Taxi&rsquo;</td>
+<td>Mode of the street network and crow_fly: <code class="prettyprint">Walking</code>, <code class="prettyprint">Bike</code>, <code class="prettyprint">Car</code>, &lsquo;Taxi&rsquo;</td>
 </tr>
 <tr>
 <td>duration</td>
@@ -2975,14 +2996,14 @@ You just have to verify that the coordinates of the geocoded object are inside t
 <h3 id="main-parameters"><a name="isochrones-parameters"></a>Main parameters</h3>
 
 <aside class="success">
-    'from&rsquo; and 'to&rsquo; parameters works as exclusive parameters:
-    <li>When 'from&rsquo; is provided, 'to&rsquo; is ignored and Navitia computes a &ldquo;departure after&rdquo; isochrone.
-    <li>When 'from&rsquo; is not provided, 'to&rsquo; is required and Navitia computes a &ldquo;arrival after&rdquo; isochrone.
+    &lsquo;from&rsquo; and &lsquo;to&rsquo; parameters works as exclusive parameters:
+    <li>When &lsquo;from&rsquo; is provided, &lsquo;to&rsquo; is ignored and Navitia computes a &ldquo;departure after&rdquo; isochrone.
+    <li>When &lsquo;from&rsquo; is not provided, &lsquo;to&rsquo; is required and Navitia computes a &ldquo;arrival after&rdquo; isochrone.
 </aside>
 
 <aside class="notice">
     Isochrones are time dependant. The duration boundary is actually an arrival time boundary.
-    'datetime&rsquo; parameter is therefore important: The result is not the same when computing
+    &lsquo;datetime&rsquo; parameter is therefore important: The result is not the same when computing
     an isochrone at 3am (few transports) or at 6pm (rush hour).
 </aside>
 
@@ -4580,9 +4601,9 @@ HTTP/1.1 200 OK
 <p>For example:</p>
 
 <ul>
-<li><a href="https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=20140425T1337">https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=20140425T1337</a></li>
-<li><a href="https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=2014-04-25T13:37+02:00">https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=2014-04-25T13:37+02:00</a></li>
-<li><a href="https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=2014-04-25T13:37:42Z">https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=2014-04-25T13:37:42Z</a></li>
+<li><a href="https://api.navitia.io/v1/journeys?from=bob&to=bobette&datetime=20140425T1337">https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=20140425T1337</a></li>
+<li><a href="https://api.navitia.io/v1/journeys?from=bob&to=bobette&datetime=2014-04-25T13:37+02:00">https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=2014-04-25T13:37+02:00</a></li>
+<li><a href="https://api.navitia.io/v1/journeys?from=bob&to=bobette&datetime=2014-04-25T13:37:42Z">https://api.navitia.io/v1/journeys?from=bob&amp;to=bobette&amp;datetime=2014-04-25T13:37:42Z</a></li>
 </ul>
 
 <p>There are lots of ISO 8601 libraries in every kind of language that you should use before breaking down <a href="https://youtu.be/-5wpm-gesOY">https://youtu.be/-5wpm-gesOY</a></p>
@@ -6510,12 +6531,12 @@ The default value is now.</p>
 
 <p>To sum up we display an impact if &lsquo;now&rsquo; is in the publication period.</p>
 
-<p>The status of the impact depends only of &#39;now&rsquo; and is:</p>
+<p>The status of the impact depends only of &lsquo;now&rsquo; and is:</p>
 
 <ul>
-<li>&#39;active&rsquo; if &#39;now&rsquo; is inside an application period</li>
-<li>&#39;future&rsquo; if &#39;now&rsquo; is not inside an application period and there is an application period after &#39;now&rsquo;</li>
-<li>&#39;past&rsquo; otherwise</li>
+<li>&lsquo;active&rsquo; if &lsquo;now&rsquo; is inside an application period</li>
+<li>&lsquo;future&rsquo; if &lsquo;now&rsquo; is not inside an application period and there is an application period after &lsquo;now&rsquo;</li>
+<li>&lsquo;past&rsquo; otherwise</li>
 </ul>
 
 <table>
@@ -6630,194 +6651,6 @@ The default value is now.</p>
   </tbody>
 </table>
 
-          <h1 id="lexicon">Lexicon</h1>
-
-<h2 id="introduction">Introduction</h2>
-
-<p>The world of public transportation is really specific, you will see here a small
-introduction to it. A lot of people in the world of public transportation use
-different words to speak about the same thing. Here are the definitions of terms
-employed in www.navitia.io</p>
-
-<p>You can read a mobility lexicon at
-<a href="https://github.com/OpenTransport/vocabulary/blob/master/vocabulary.md">https://github.com/OpenTransport/vocabulary/blob/master/vocabulary.md</a></p>
-
-<p>You will often read &ldquo;PT&rdquo; in this document. PT stands for public transport.</p>
-
-<h2 id="stop-point">Stop Point</h2>
-
-<p>A stop point is the physical object were someone waits for his bus
-(subway, or whatever type of vehicle you can have in a public transport system).</p>
-
-<h2 id="stop-area">Stop Area</h2>
-
-<p>A stop area is a collection of stop points. Generally there are at least two stop
-points per stop area, one per direction of a line. Now think of a hub, you will
-have more than one line. Therefore your stop area will contain more than two stop
-points. In particular cases your stop area can contain only one stop point.</p>
-
-<p>Some datasets do not contain any stop area.</p>
-
-<h2 id="connection">Connection</h2>
-
-<p>This object links two stop points together (named origin and
-destination). It is the walkable part of a journey.</p>
-
-<h2 id="journey-pattern">Journey Pattern</h2>
-
-<p>A journey pattern is an ordered list of stop points. Two vehicles that serve exactly the
-same stop points in exactly the same order belong to to the same journey pattern.</p>
-
-<h2 id="route">Route</h2>
-
-<p>A route is a collection of journey pattern that match the same commercial direction.</p>
-
-<aside class="warning">
-    The GTFS specification uses the term <b>route</b> for the object we call <b>line</b>. It does not
-    have this notion of commercial direction.
-</aside>
-
-<h2 id="line">Line</h2>
-
-<p>A line is a collection of routes. Most of the time you&rsquo;ll just have just two routes.
-This object is called <em>route</em> in the GTFS format.</p>
-
-<h2 id="stop-time">Stop Time</h2>
-
-<p>A stop time represents the time when a bus is planned to arrive and to leave a
-stop point.</p>
-
-          <h1 id="errors">Errors</h1>
-
-<h2 id="code-40x">Code 40x</h2>
-
-<p>When Navitia is unable to give an answer, you&rsquo;ll receive a response with an error object
-containing a unique error id, in a 4XX http code response</p>
-<pre class="highlight shell"><code><span class="c">#request</span>
-<span class="gp">$ </span>curl <span class="s1">'https://api.navitia.io/v1/coverage/sandbox/stop_areas/wrong-one'</span> -H <span class="s1">'Authorization: 3b036afe-0110-4202-b9ed-99718476c2e0'</span>
-
-<span class="c">#response</span>
-HTTP/1.1 404 OK
-
-<span class="o">{</span>
-    <span class="s2">"error"</span>: <span class="o">{</span>
-        <span class="s2">"id"</span>: <span class="s2">"bad_filter"</span>,
-        <span class="s2">"message"</span>: <span class="s2">"ptref : Filters: Unable to find object"</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>The are two possible 40x http codes :</p>
-
-<ul>
-<li>  Code 404: unable to find an object</li>
-</ul>
-
-<table><thead>
-<tr>
-<th>Error id</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>date_out_of_bounds</td>
-<td>When the given date is out of bounds of the production dates of the region</td>
-</tr>
-<tr>
-<td>no_origin</td>
-<td>Couldn&rsquo;t find an origin for the journeys</td>
-</tr>
-<tr>
-<td>no_destination</td>
-<td>Couldn&rsquo;t find a destination for the journeys</td>
-</tr>
-<tr>
-<td>no_origin_nor_destination</td>
-<td>Couldn&rsquo;t find neither origin nor destination for the journeys</td>
-</tr>
-<tr>
-<td>unknown_object</td>
-<td>Couldn&rsquo;t find one of the request parameters. It can be the region, the API or a PT object</td>
-</tr>
-</tbody></table>
-
-<ul>
-<li>  Code 400: bad request</li>
-</ul>
-
-<table><thead>
-<tr>
-<th>Error id</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bad_filter</td>
-<td>When you use a custom filter</td>
-</tr>
-<tr>
-<td>unable_to_parse</td>
-<td>When you use a mal-formed custom filter</td>
-</tr>
-<tr>
-<td>unknown_api</td>
-<td>When you request an inexistant endpoint</td>
-</tr>
-<tr>
-<td>bad_format</td>
-<td>When you provide ill-formated parameter (coord for example)</td>
-</tr>
-<tr>
-<td>config_exception</td>
-<td>When you try to configure an external service (street network back-end or autocomplete) with wrong parameters</td>
-</tr>
-</tbody></table>
-
-<h2 id="code-200">Code 200</h2>
-
-<p>Even if everything is correct (input parameters, internal processing)
-Navitia can end up finding that the correct answer is empty.</p>
-
-<table><thead>
-<tr>
-<th>Error id</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>no_solution</td>
-<td>From data, there is no solution available given the request</td>
-</tr>
-</tbody></table>
-
-<h2 id="code-50x">Code 50x</h2>
-
-<p>Ouch. Technical issue :/</p>
-
-<table><thead>
-<tr>
-<th>Error id</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>internal_error</td>
-<td>Something bad and unexpected has happened internally</td>
-</tr>
-<tr>
-<td>service_unavailable</td>
-<td>Navitia isn&rsquo;t responding</td>
-</tr>
-<tr>
-<td>dead_socket</td>
-<td>The requested region isn&rsquo;t responding</td>
-</tr>
-<tr>
-<td>technical_error</td>
-<td>An external service (street network back-end or autocomplete) isn&rsquo;t responding</td>
-</tr>
-</tbody></table>
-
           <h1 id="real-time-integration-in-navita"><a name="realtime"></a> Real time integration in Navita</h1>
 
 <p>Several endpoints can integrate real time information in their responses. In the response received, a disruption will be present and additional information will be provided if the parameter <code class="prettyprint">data_freshness</code> is set to <code class="prettyprint">realtime</code>. If the parameter <code class="prettyprint">data_freshness</code> is set to <code class="prettyprint">base_schedule</code>, the disruption is also present in the response for the user information, but it won&rsquo;t be taken into account in the results of the query.</p>
@@ -6834,6 +6667,8 @@ Real time isn&rsquo;t available on every coverage for Navitia. For real time to 
     <li><a href="#MODIFIED_SERVICE">MODIFIED_SERVICE</a></li>
     <li><a href="#ADDITIONAL_SERVICE">ADDITIONAL_SERVICE</a></li>
     <li><a href="#UNKNOWN_EFFECT">UNKNOWN_EFFECT</a></li>
+    <li><a href="#MODIFIED_SERVICE">DETOUR</a></li>
+    <li><a href="#OTHER_EFFECT">OTHER_EFFECT</a></li>
 </ul>
 This list follows the GTFS RT values documented at <a href="https://gtfs.org/reference/realtime/v2/#enum-effect">https://gtfs.org/reference/realtime/v2/#enum-effect</a>.</p>
 
@@ -6854,6 +6689,10 @@ of course be <strong>visible</strong> if <code class="prettyprint">data_freshnes
 
 <p>On the other hand, a vehicle_journey that is <strong>created</strong> by a realtime feed will only be <strong>visible</strong> if
 <code class="prettyprint">data_freshness=realtime</code> on that same request.<br>And it will <strong>not appear</strong> if <code class="prettyprint">data_freshness=base_schedule</code>.</p>
+
+<h2 id="other-effect"><a name="OTHER_EFFECT"></a>Other effect</h2>
+
+<p>There is no known effect related to this disruption. You only have to show the message to your traveler&hellip;</p>
 
 <h2 id="trip-delayed"><a name="SIGNIFICANT_DELAYS"></a>Trip delayed</h2>
 
@@ -7078,7 +6917,7 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/physical_modes/&lt;physical_m
 
 <p>If the stop deleted is the origin/destination of a section of the journey, Navitia will compute a different itinerary to the requested station.<br>If not (deleting intermediate stop), the journey won&rsquo;t be affected.<br>Either way, a link to this disruption can be found in the section &ldquo;display_informations&rdquo; like for other disruptions.</p>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At the deleted stop area, the departure time of the train with a reduced service simply won&rsquo;t be displayed in the list of departures/stop_schedules if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.</p>
 
@@ -7124,7 +6963,7 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/physical_modes/&lt;physical_m
 <p>If the deleted trip is used by a section of the <code class="prettyprint">base_schedule</code> journey, Navitia will compute a different
 itinerary to the requested station in <code class="prettyprint">realtime</code>, or a later one (without using that trip).<br>A link to this disruption can be found in the section &ldquo;display_informations&rdquo; like for other disruptions, on a <code class="prettyprint">base_schedule</code> journey.</p>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At the deleted stop area, the departure time of the cancelled train simply won&rsquo;t be displayed in the list of departures/stop_schedules if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.</p>
 
@@ -7216,7 +7055,7 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/journeys?from<span class="o">
 
 <div></div>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At the added stop area, the departure time of the train with a modified service is displayed if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.<br>In that case, a link to this disruption can be found in the section &ldquo;display_informations&rdquo; for departures, in the &ldquo;date_times&rdquo; object itself for stop_schedules.</p>
 
@@ -7309,13 +7148,13 @@ http://api.navitia.io/v1/coverage/&lt;coverage&gt;/journeys?from<span class="o">
 
 <div></div>
 
-<h3 id="departures-amp-stop-schedules">Departures &amp; Stop Schedules</h3>
+<h3 id="departures-stop-schedules">Departures &amp; Stop Schedules</h3>
 
 <p>At one of the added stop area from the additional trip, the departure time of the added train is displayed if &ldquo;data_freshness&rdquo; is set to &ldquo;realtime&rdquo;.<br>In that case, a link to this disruption can be found in the section &ldquo;display_informations&rdquo; for departures, in the &ldquo;date_times&rdquo; object itself for stop_schedules.</p>
 
 <p>The departure time of the train with an additional service simply won&rsquo;t be displayed in the list of departures/stop_schedules if &ldquo;data_freshness&rdquo; is set to &ldquo;base_schedule&rdquo;.</p>
 
-<h2 id="unknown-effect-aka-quot-back-to-normal-quot"><a name="UNKNOWN_EFFECT"></a>Unknown effect aka &ldquo;Back to normal&rdquo;</h2>
+<h2 id="unknown-effect-aka-back-to-normal"><a name="UNKNOWN_EFFECT"></a>Unknown effect aka &ldquo;Back to normal&rdquo;</h2>
 <pre class="highlight shell"><code><span class="c"># Extract of an impacted stop from /disruptions</span>
 <span class="o">{</span>
     <span class="s2">"amended_arrival_time"</span>: <span class="s2">"193200"</span>,
@@ -7429,6 +7268,194 @@ Same elements as <span class="k">in </span>stop_scedule object.
 <p>In the list of &ldquo;date_times&rdquo; available in the response, the field &ldquo;data_freshness&rdquo; is &ldquo;realtime&rdquo; and the field &ldquo;date_time&rdquo; is equal to the field &ldquo;base_date_time&rdquo;.</p>
 
 <p>No disruption is present at the root level of the response and so, in the sections &ldquo;date_times&rdquo; and &ldquo;display_informations&rdquo;, there&rsquo;s no link to any disruption.</p>
+
+          <h1 id="lexicon">Lexicon</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The world of public transportation is really specific, you will see here a small
+introduction to it. A lot of people in the world of public transportation use
+different words to speak about the same thing. Here are the definitions of terms
+employed in www.navitia.io</p>
+
+<p>You can read a mobility lexicon at
+<a href="https://github.com/OpenTransport/vocabulary/blob/master/vocabulary.md">https://github.com/OpenTransport/vocabulary/blob/master/vocabulary.md</a></p>
+
+<p>You will often read &ldquo;PT&rdquo; in this document. PT stands for public transport.</p>
+
+<h2 id="stop-point">Stop Point</h2>
+
+<p>A stop point is the physical object were someone waits for his bus
+(subway, or whatever type of vehicle you can have in a public transport system).</p>
+
+<h2 id="stop-area">Stop Area</h2>
+
+<p>A stop area is a collection of stop points. Generally there are at least two stop
+points per stop area, one per direction of a line. Now think of a hub, you will
+have more than one line. Therefore your stop area will contain more than two stop
+points. In particular cases your stop area can contain only one stop point.</p>
+
+<p>Some datasets do not contain any stop area.</p>
+
+<h2 id="connection">Connection</h2>
+
+<p>This object links two stop points together (named origin and
+destination). It is the walkable part of a journey.</p>
+
+<h2 id="journey-pattern">Journey Pattern</h2>
+
+<p>A journey pattern is an ordered list of stop points. Two vehicles that serve exactly the
+same stop points in exactly the same order belong to to the same journey pattern.</p>
+
+<h2 id="route">Route</h2>
+
+<p>A route is a collection of journey pattern that match the same commercial direction.</p>
+
+<aside class="warning">
+    The GTFS specification uses the term <b>route</b> for the object we call <b>line</b>. It does not
+    have this notion of commercial direction.
+</aside>
+
+<h2 id="line">Line</h2>
+
+<p>A line is a collection of routes. Most of the time you&rsquo;ll just have just two routes.
+This object is called <em>route</em> in the GTFS format.</p>
+
+<h2 id="stop-time">Stop Time</h2>
+
+<p>A stop time represents the time when a bus is planned to arrive and to leave a
+stop point.</p>
+
+          <h1 id="errors">Errors</h1>
+
+<h2 id="code-40x">Code 40x</h2>
+
+<p>When Navitia is unable to give an answer, you&rsquo;ll receive a response with an error object
+containing a unique error id, in a 4XX http code response</p>
+<pre class="highlight shell"><code><span class="c">#request</span>
+<span class="gp">$ </span>curl <span class="s1">'https://api.navitia.io/v1/coverage/sandbox/stop_areas/wrong-one'</span> -H <span class="s1">'Authorization: 3b036afe-0110-4202-b9ed-99718476c2e0'</span>
+
+<span class="c">#response</span>
+HTTP/1.1 404 OK
+
+<span class="o">{</span>
+    <span class="s2">"error"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: <span class="s2">"bad_filter"</span>,
+        <span class="s2">"message"</span>: <span class="s2">"ptref : Filters: Unable to find object"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The are two possible 40x http codes :</p>
+
+<ul>
+<li>  Code 404: unable to find an object</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Error id</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date_out_of_bounds</td>
+<td>When the given date is out of bounds of the production dates of the region</td>
+</tr>
+<tr>
+<td>no_origin</td>
+<td>Couldn&rsquo;t find an origin for the journeys</td>
+</tr>
+<tr>
+<td>no_destination</td>
+<td>Couldn&rsquo;t find a destination for the journeys</td>
+</tr>
+<tr>
+<td>no_origin_nor_destination</td>
+<td>Couldn&rsquo;t find neither origin nor destination for the journeys</td>
+</tr>
+<tr>
+<td>unknown_object</td>
+<td>Couldn&rsquo;t find one of the request parameters. It can be the region, the API or a PT object</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>  Code 400: bad request</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Error id</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bad_filter</td>
+<td>When you use a custom filter</td>
+</tr>
+<tr>
+<td>unable_to_parse</td>
+<td>When you use a mal-formed custom filter</td>
+</tr>
+<tr>
+<td>unknown_api</td>
+<td>When you request an inexistant endpoint</td>
+</tr>
+<tr>
+<td>bad_format</td>
+<td>When you provide ill-formated parameter (coord for example)</td>
+</tr>
+<tr>
+<td>config_exception</td>
+<td>When you try to configure an external service (street network back-end or autocomplete) with wrong parameters</td>
+</tr>
+</tbody></table>
+
+<h2 id="code-200">Code 200</h2>
+
+<p>Even if everything is correct (input parameters, internal processing)
+Navitia can end up finding that the correct answer is empty.</p>
+
+<table><thead>
+<tr>
+<th>Error id</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>no_solution</td>
+<td>From data, there is no solution available given the request</td>
+</tr>
+</tbody></table>
+
+<h2 id="code-50x">Code 50x</h2>
+
+<p>Ouch. Technical issue :/</p>
+
+<table><thead>
+<tr>
+<th>Error id</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>internal_error</td>
+<td>Something bad and unexpected has happened internally</td>
+</tr>
+<tr>
+<td>service_unavailable</td>
+<td>Navitia isn&rsquo;t responding</td>
+</tr>
+<tr>
+<td>dead_socket</td>
+<td>The requested region isn&rsquo;t responding</td>
+</tr>
+<tr>
+<td>technical_error</td>
+<td>An external service (street network back-end or autocomplete) isn&rsquo;t responding</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
