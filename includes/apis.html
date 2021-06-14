@@ -1632,17 +1632,6 @@ These disruptions won&rsquo;t be on the <code class="prettyprint">display_inform
 <li>A user would only like to use Buses and Tramways. She adds the parameter <code class="prettyprint">allowed_id[]=physical_mode:Bus&amp;allowed_id[]=physical_mode:Tramway</code>.</li>
 </ul>
 
-<h3 id="precisions-on-free_radius_from-free_radius_to">Precisions on <code class="prettyprint">free_radius_from/free_radius_to</code></h3>
-
-<p>These parameters find the nearest stop point (within free_radius distance) to the given coordinates.
-Then, it allows skipping walking sections between the point of departure/arrival and those nearest stop points.</p>
-
-<p>Example:</p>
-
-<p><img alt="image" src="../images/free_radius.png" /></p>
-
-<p>In this example, the stop points within the circle (SP1, SP2 et SP3) can be reached via a crowfly of 0 second. The other stop points, outside the circle, will be reached by walking.</p>
-
 <h4 id="technically">Technically</h4>
 
 <p>The journeys can only use allowed vehicle journeys (as present in the <code class="prettyprint">public_transport</code> or <code class="prettyprint">on_demand_transport</code> sections).
@@ -1732,6 +1721,17 @@ They also can only use the allowed stop points for getting in or out of a vehicl
 <td>No solution, as no stop point are allowed.</td>
 </tr>
 </tbody></table>
+
+<h3 id="precisions-on-free_radius_from-free_radius_to">Precisions on <code class="prettyprint">free_radius_from/free_radius_to</code></h3>
+
+<p>These parameters find the nearest stop point (within free_radius distance) to the given coordinates.
+Then, it allows skipping walking sections between the point of departure/arrival and those nearest stop points.</p>
+
+<p>Example:</p>
+
+<p><img alt="image" src="../images/free_radius.png" /></p>
+
+<p>In this example, the stop points within the circle (SP1, SP2 et SP3) can be reached via a crowfly of 0 second. The other stop points, outside the circle, will be reached by walking.</p>
 
 <h3 id="objects">Objects</h3>
 
